@@ -47,7 +47,7 @@ else:
 
 
     class Gui:
-        """Represents the gui class for the population generator microservice"""
+        """Represents the gui class for quantconnect lean results"""
 
         def __init__(self, root):
             """The gui class constructor for initializing the variables it takes as a parameter the root of the
