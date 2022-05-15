@@ -1,4 +1,3 @@
-import glob
 import sys
 import json
 import csv
@@ -54,6 +53,9 @@ else:
             self.plain_text = StringVar()
             self.total_trades = StringVar()
             self.sharpe_ratio = StringVar()
+            self.annual_variance = StringVar()
+            self.win_rate = StringVar()
+            self.loss_rate = StringVar()
 
             self.display_output = Label(user_interface,
                                         textvariable=self.plain_text)
@@ -61,12 +63,24 @@ else:
                                         textvariable=self.total_trades)
             self.display_sharpe = Label(user_interface,
                                         textvariable=self.sharpe_ratio)
+            self.display_variance = Label(user_interface,
+                                        textvariable=self.annual_variance)
+            self.display_win = Label(user_interface,
+                                        textvariable=self.win_rate)
+            self.display_loss = Label(user_interface,
+                                        textvariable=self.loss_rate)
 
             self.display_output.grid(row=self.row_counter, column=8, padx=10,
                                      pady=10)
             self.display_trades.grid(row=self.row_counter, column=9, padx=10,
                                      pady=10)
             self.display_sharpe.grid(row=self.row_counter + 1, column=8, padx=10,
+                                     pady=10)
+            self.display_variance.grid(row=self.row_counter + 1, column=9, padx=10,
+                                     pady=10)
+            self.display_win.grid(row=self.row_counter + 2, column=8, padx=10,
+                                     pady=10)
+            self.display_loss.grid(row=self.row_counter + 2, column=9, padx=10,
                                      pady=10)
 
         def display_headers(self):
@@ -77,8 +91,8 @@ else:
             display_creator = Label(user_interface,
                                     text="Developed by: Anthony Corton")
             state_header = Label(user_interface,
-                                 text="Please select your file location\nthen "
-                                      "choose a corresponding year from the year drop down menu ")
+                                 text="Please select your file of choice\nthen "
+                                      "select your final choice from the below options ")
 
             display_results = Label(user_interface,
                                     text="Your results for the search will be shown below:")
@@ -177,6 +191,9 @@ else:
             self.plain_text.set('Ticker ' + data['Lowest Capacity Asset'][:4])
             self.total_trades.set('Total Trades ' + data['Total Trades'])
             self.sharpe_ratio.set('Sharpe Ratio ' + data['Sharpe Ratio'])
+            self.annual_variance.set('Annual Variance ' + data['Annual Variance'])
+            self.win_rate.set('Win Rate ' + data['Win Rate'])
+            self.loss_rate.set('Loss Rate ' + data['Loss Rate'])
 
     test_run = Gui(user_interface)
     test_run.display_headers()
