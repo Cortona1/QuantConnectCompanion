@@ -18,22 +18,18 @@ def write_file(data):
 
         csv_writer.writerow(data.values())
 
+
 if not len(sys.argv) < 2:
     file_list = []
     f = open(sys.argv[-1], "r")  # open up the file designated at run time
     data = json.load(f)
     f.close()
-    print(data['Statistics'])
-
 
     write_file(data['Statistics'])
 
-
 else:
-    print("hello")
 
     from tkinter import *
-    import requests as req
     from tkinter import ttk
 
     user_interface = Tk()
@@ -42,12 +38,10 @@ else:
     user_interface.configure(background='#FFFFC1')
 
     from os import listdir
-    from os.path import isfile, join
     import os
 
-
     class Gui:
-        """Represents the gui class for quantconnect lean results"""
+        """Represents the gui class for QuantConnect lean results"""
 
         def __init__(self, root):
             """The gui class constructor for initializing the variables it takes as a parameter the root of the
@@ -154,9 +148,7 @@ else:
             """Function triggered when user wants to just make a csv"""
             files = os.listdir()
 
-            print(files)
             test = self.selected_algo.get()
-            print(test)
             f = open(f'./Launcher/bin/Debug/{test}.json',"r")  # open up the file designated at run time
             data = json.load(f)
             f.close()
@@ -168,15 +160,11 @@ else:
 
         def submit_search_output(self):
             """Function triggered when user submits to create csv and output data"""
-            files = os.listdir()
 
-            print(files)
             test = self.selected_algo.get()
-            print(test)
             f = open(f'./Launcher/bin/Debug/{test}.json',"r")  # open up the file designated at run time
             data = json.load(f)
             f.close()
-            print(data['Statistics'])
 
             write_file(data['Statistics'])
 
