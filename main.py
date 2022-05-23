@@ -7,13 +7,9 @@ def write_file(data):
     """Takes a json content for statistics and outputs the data relevant to
     a csv file with proper headers"""
 
-    with open('cvs_file.csv', 'w', newline='') as csvfile:
+    with open('cvs_file.csv', 'a', newline='') as csvfile:
         csv_writer = csv.writer(csvfile, delimiter=',',
                                 quotechar='|', quoting=csv.QUOTE_MINIMAL)
-
-        # create headers
-        header = data.keys()
-        csv_writer.writerow(header)
 
         csv_writer.writerow(data.values())
 
@@ -34,7 +30,7 @@ else:
     user_interface = Tk()
 
     user_interface.geometry("1400x800")  # keep resizing window available
-    user_interface.configure(background='#FFFFC1')
+    user_interface.configure(background='#F5F5F5')
 
     from os import listdir
     import os
@@ -116,7 +112,7 @@ else:
 
             algo_variable = StringVar(user_interface)
             algo_variable.set(
-                "MultiResolutionAlgorithm")  # set default menu selection to New Jersey 2005
+                "BasicTemplateAlgorithm")  # set default menu selection to New Jersey 2005
 
             self.selected_algo = algo_variable
 
@@ -166,9 +162,19 @@ else:
             f = open(f'./Launcher/bin/Debug/{test}.json',"r")  # open up the file designated at run time
             data = json.load(f)
             f.close()
-            print(data['Statistics'])
 
-            write_file(data['Statistics'])
+            stats = data['Statistics']
+
+            delete_keys = ['Expectancy', 'Probabilistic Sharpe Ratio', 'Profit-Loss Ratio', 'Alpha', 'Beta',
+                           'Information Ratio', 'Tracking Error', 'Treynor Ratio', 'Total Fees',
+                           'Estimated Strategy Capacity', 'Lowest Capacity Asset']
+
+            for key in delete_keys:
+                del stats[key]
+
+            print(stats)
+
+            write_file(stats)
 
             self.pop_up_message("csv_file.csv has been created")
 
@@ -180,15 +186,25 @@ else:
             data = json.load(f)
             f.close()
 
-            write_file(data['Statistics'])
+            stats = data['Statistics']
 
-            self.output_information(data['Statistics'])
+            delete_keys = ['Expectancy', 'Probabilistic Sharpe Ratio', 'Profit-Loss Ratio', 'Alpha', 'Beta',
+                           'Information Ratio', 'Tracking Error', 'Treynor Ratio', 'Total Fees',
+                           'Estimated Strategy Capacity', 'Lowest Capacity Asset']
+
+            for key in delete_keys:
+                del stats[key]
+
+            print(stats)
+
+            write_file(stats)
+
+            self.output_information(stats)
             self.pop_up_message("csv_file.csv has been created and results are outputted to screen")
 
         def output_information(self, data):
             """Takes as a parameter data string and outputs that to the gui as a message box"""
 
-            self.plain_text.set('Ticker ' + data['Lowest Capacity Asset'][:4])
             self.total_trades.set('Total Trades ' + data['Total Trades'])
             self.sharpe_ratio.set('Sharpe Ratio ' + data['Sharpe Ratio'])
             self.annual_variance.set('Annual Variance ' + data['Annual Variance'])
