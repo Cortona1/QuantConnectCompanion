@@ -66,18 +66,14 @@ else:
             self.display_loss = Label(user_interface,
                                         textvariable=self.loss_rate)
 
-            self.display_output.grid(row=self.row_counter, column=8, padx=10,
-                                     pady=10)
-            self.display_trades.grid(row=self.row_counter, column=9, padx=10,
-                                     pady=10)
-            self.display_sharpe.grid(row=self.row_counter + 1, column=8, padx=10,
-                                     pady=10)
-            self.display_variance.grid(row=self.row_counter + 1, column=9, padx=10,
-                                     pady=10)
-            self.display_win.grid(row=self.row_counter + 2, column=8, padx=10,
-                                     pady=10)
-            self.display_loss.grid(row=self.row_counter + 2, column=9, padx=10,
-                                     pady=10)
+
+            self.display_output.place(relx=.5, rely=.04, anchor="e")
+
+            self.display_trades.place(relx=.7, rely=.15, anchor="e")
+            self.display_sharpe.place(relx=.9, rely=.15, anchor="e")
+            self.display_variance.place(relx=.7, rely=.20, anchor="e")
+            self.display_win.place(relx=.9, rely=.20, anchor="e")
+            self.display_loss.place(relx=.7, rely=.25, anchor="e")
 
         def display_headers(self):
             """Will display the headers of the gui"""
@@ -93,13 +89,9 @@ else:
             display_results = Label(user_interface,
                                     text="Your results for the search will be shown below:")
 
-            # display_header.grid(row=0, column=4, ipady=10)
             display_header.place(relx=.5, rely=.01, anchor="center")
-            # display_creator.grid(row=1, column=4)
             display_creator.place(relx=.5, rely=.04, anchor="center")
-            # state_header.grid(row=6, column=0, padx=10, pady=30)
             state_header.place(relx=.1, rely=.06, anchor="nw")
-            # display_results.grid(row=6, column=8)
             display_results.place(relx=.9, rely=.06, anchor="ne")
 
         def create_display_list(self):
@@ -116,14 +108,13 @@ else:
 
             algo_variable = StringVar(user_interface)
             algo_variable.set(
-                "BasicTemplateAlgorithm")  # set default menu selection to New Jersey 2005
+                "BasicTemplateAlgorithm")
 
             self.selected_algo = algo_variable
 
             algo_menu = OptionMenu(user_interface, algo_variable,
                                     *options_list[0])
 
-            # algo_menu.grid(row=8, column=0, ipadx=10)
             algo_menu.place(relx=.1, rely=.15, anchor="w")
 
         def create_submit(self):
@@ -138,13 +129,7 @@ else:
                                         " to output results on screen",
                                    command=self.submit_search_output)
 
-            # another_space = Label(user_interface)
-            # space = Label(user_interface)
-            # space.grid(row=10, column=0)
-            # submit.grid(row=11, column=0)
             submit.place(relx=.1, rely=.20, anchor="w")
-            # another_space.grid(row=12, column=0)
-            # submit_output.grid(row=13, column=0)
             submit_output.place(relx=.1, rely=.25, anchor="w")
 
         def pop_up_message(self, text):
