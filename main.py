@@ -93,10 +93,13 @@ else:
             display_results = Label(user_interface,
                                     text="Your results for the search will be shown below:")
 
-            display_header.grid(row=0, column=4, ipady=10)
-            display_creator.grid(row=1, column=4)
+            # display_header.grid(row=0, column=4, ipady=10)
+            display_header.place(relx=.5, rely=.01, anchor="center")
+            # display_creator.grid(row=1, column=4)
+            display_creator.place(relx=.5, rely=.04, anchor="center")
             state_header.grid(row=6, column=0, padx=10, pady=30)
-            display_results.grid(row=6, column=8)
+            # display_results.grid(row=6, column=8)
+            display_results.place(relx=.9, rely=.06, anchor="ne")
 
         def create_display_list(self):
             """Creates the list of options that will be displayed to the gui as a list of available
