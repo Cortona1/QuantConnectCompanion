@@ -97,7 +97,8 @@ else:
             display_header.place(relx=.5, rely=.01, anchor="center")
             # display_creator.grid(row=1, column=4)
             display_creator.place(relx=.5, rely=.04, anchor="center")
-            state_header.grid(row=6, column=0, padx=10, pady=30)
+            # state_header.grid(row=6, column=0, padx=10, pady=30)
+            state_header.place(relx=.1, rely=.06, anchor="nw")
             # display_results.grid(row=6, column=8)
             display_results.place(relx=.9, rely=.06, anchor="ne")
 
@@ -122,7 +123,8 @@ else:
             algo_menu = OptionMenu(user_interface, algo_variable,
                                     *options_list[0])
 
-            algo_menu.grid(row=8, column=0, ipadx=10)
+            # algo_menu.grid(row=8, column=0, ipadx=10)
+            algo_menu.place(relx=.1, rely=.15, anchor="w")
 
         def create_submit(self):
             """Creates the submit button for clicking search for algorithms"""
@@ -136,12 +138,14 @@ else:
                                         " to output results on screen",
                                    command=self.submit_search_output)
 
-            another_space = Label(user_interface)
-            space = Label(user_interface)
-            space.grid(row=10, column=0)
-            submit.grid(row=11, column=0)
-            another_space.grid(row=12, column=0)
-            submit_output.grid(row=13, column=0)
+            # another_space = Label(user_interface)
+            # space = Label(user_interface)
+            # space.grid(row=10, column=0)
+            # submit.grid(row=11, column=0)
+            submit.place(relx=.1, rely=.20, anchor="w")
+            # another_space.grid(row=12, column=0)
+            # submit_output.grid(row=13, column=0)
+            submit_output.place(relx=.1, rely=.25, anchor="w")
 
         def pop_up_message(self, text):
             """This function is responsible for showing a pop up message confirming the results of the user's query
